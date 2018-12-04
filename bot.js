@@ -4,93 +4,59 @@ const client = new Discord.Client();
 
  
 
-client.on('ready', () => {
-
-  console.log(`Logged in as ${client.user.tag}!`);
-
-client.user.setGame(`!!!wan bc l Wbc`,'https://www.twitch.tv/MeeRcY')
-
-});
-
- 
-
-
- 
-
- 
-
 client.on('message', message => {
-    var prefix = 'W'; // هنا تقدر تغير البرفكس
-var command = message.content.split(" ")[0];
-if(command == prefix + 'Bc') { // الكوماند !bc
-    var args = message.content.split(' ').slice(1).join(' ');
+              if(!message.channel.guild) return;
+    if(message.content.startsWith('Wbc')) {
+    if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );  //7md
+    let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
+    let copy = "DgPro-BC";
+    let request = `Requested By ${message.author.username}`;  //7md
+    if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
+    msg.react('✅')
+    .then(() => msg.react('❌'))  //7md
+    .then(() =>msg.react('✅'))  //7md
 
 
-        if(message.author.bot) return;
 
-        if(!args) return message.channel.send(`** BC [ Message ] :envelope:  ** ${prefix} `).then(msg => msg.delete(5000));
+    let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+    let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
+       let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });  //7md
+    let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });  //7md
+    reaction1.on("collect", r => {
+    message.channel.send(`☑ |   ${message.guild.members.size} يتم ارسال البرودكاست الى عضو `).then(m => m.delete(5000));  //7md
+    message.guild.members.forEach(m => {
+    var bc = new  
+       Discord.RichEmbed()
+       .setColor('RANDOM')
+       .setTitle('البرودكاست') .addField('السيرفر', message.guild.name) .addField('المرسل', message.author.username)  //7md
+       .addField('الرساله', args)  //7md
+       .setThumbnail(message.author.avatarURL)  //7md
+       .setFooter(copy, client.user.avatarURL); //7md
+    m.send({ embed: bc })
+    msg.delete();  //7md
+    })
+    })
+    reaction2.on("collect", r => {  //7md
+    message.channel.send(`**Broadcast Canceled.**`).then(m => m.delete(5000));   //7md
+    msg.delete();  //7md  
+    })  //7md
+    }) //7md
+    }  //7md
+    }) //7md
+ 
 
+
+ 
+
+ 
+
+ 
+        
         
 
 
-        message.channel.send(`**Are you sure you want to send the message? :mailbox_with_mail: **`).then(msg => msg.delete(5000));
-      
-              let bcSure = new Discord.RichEmbed()
-
-              
-message.channel.send(bcSure).then(msg => {
-msg.react('✅').then(() => msg.react('❎'));
-message.delete();
-
-            
-
            
-
-       let yesEmoji = (reaction, user) => reaction.emoji.name === '✅'  && user.id === message.author.id;
-
-            let noEmoji = (reaction, user) => reaction.emoji.name === '❎' && user.id === message.author.id;
-
-            
-
-            let sendBC = msg.createReactionCollector(yesEmoji);
-
-            let dontSendBC = msg.createReactionCollector(noEmoji);
-
-            
-
-            sendBC.on('collect', r => {
-
-                message.guild.members.forEach(member => {
-
-                    member.send(args.replace(`[user]`, member)).catch();
-
-                    if(message.attachments.first()){
-
-                        member.sendFile(message.attachments.first().url).catch();
-
-                    }
-
-                })
-
-                message.channel.send(` **  Your message has been sent to me  [ ${msg.guild.memberCount} ]  Member of the server ✅ **`).then(msg => msg.delete(5000));
-
-                msg.delete();
-
-            })
-
-            dontSendBC.on('collect', r => {
-
-                msg.delete();
-
-                message.reply('** :white_check_mark: Your message has been successfully canceled **').then(msg => msg.delete(5000));
-
-            });
-
-        })
-
-    }
-
-});
 
 
 
