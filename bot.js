@@ -15,7 +15,7 @@ const client = new Discord.Client();
 
 
 
-var prefix = "d";
+var prefix = "w";
 
 var adminprefix = "Wb";
 
