@@ -2,14 +2,14 @@ const Discord = require('discord.js');
 
 const client = new Discord.Client();
 
-var prefix="*";
+
  
 
  
 
 client.on("message", message => {
 
-            if (message.content.startsWith(prefix + "bc")) {
+            if (message.content.startsWith("*bc")) {
         if(message.channel.type === 'dm') return message.reply('This Command Is Only For Server!');
                          if (!message.member.hasPermission("ADMINISTRATOR"))  return;
   let args = message.content.split(" ").slice(1);
@@ -27,7 +27,7 @@ client.on("message", message => {
 
 
   client.on('message', async message => {
-  if(message.content.startsWith(prefix + "bcall")) {
+  if(message.content.startsWith("*bcall")) {
     let i = client.users.size;
     if(message.author.id !== '323888904602124299') return message.channel.send('❎ » هذا الأمر مخصص لصاحب البوت فقط');
     var args = message.content.split(' ').slice(1).join(' ');
