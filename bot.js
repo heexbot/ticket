@@ -9,7 +9,7 @@ const client = new Discord.Client();
 
 client.on("message", message => {
 
-            if (message.content.startsWith("*bc")) {
+            if (message.content.startsWith("$bc")) {
         if(message.channel.type === 'dm') return message.reply('This Command Is Only For Server!');
                          if (!message.member.hasPermission("ADMINISTRATOR"))  return;
   let args = message.content.split(" ").slice(1);
@@ -27,7 +27,7 @@ client.on("message", message => {
 
 
   client.on('message', async message => {
-  if(message.content.startsWith("*bcall")) {
+  if(message.content.startsWith("$bcall")) {
     let i = client.users.size;
     if(message.author.id !== '323888904602124299') return message.channel.send('❎ » هذا الأمر مخصص لصاحب البوت فقط');
     var args = message.content.split(' ').slice(1).join(' ');
@@ -52,9 +52,9 @@ client.on("message", message => {
 
 var prefix = "w";
 
-var adminprefix = "*";
+var adminprefix = "$";
 
-const developers = ["378982385779343360","323888904602124299"]
+const developers = ["272808689688248320","323888904602124299"]
 
 client.on('message', message => {
 
