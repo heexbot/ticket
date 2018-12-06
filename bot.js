@@ -41,10 +41,7 @@ client.on("message", message => {
   }
 });
 
-__
-كود برودكاست مدموج مع كود bcall
-من صنعي طبعا
-@here l @everyone 
+
         
         
 
