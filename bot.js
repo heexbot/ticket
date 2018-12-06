@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 
 const client = new Discord.Client();
 
+var prefix="*";
  
 
  
@@ -54,9 +55,9 @@ __
 
 var prefix = "w";
 
-var adminprefix = "Wb";
+var adminprefix = "*";
 
-const developers = ["323888904602124299","379212980946075648"]
+const developers = ["378982385779343360","323888904602124299"]
 
 client.on('message', message => {
 
