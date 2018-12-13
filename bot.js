@@ -99,7 +99,7 @@ client.on("message", (message) => {
 
 
 
-  if (message.content.startsWith("Fclose")) {
+  if (message.content.startsWith("$close")) {
 
 
         if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`You can't use the close command outside of a ticket channel.`);
@@ -107,13 +107,13 @@ client.on("message", (message) => {
 
 
 
-       message.channel.send(`هل انت متأكد من اقفالك للتذكرة اذا متأكد اكتب $confirm`)
+       message.channel.send(`هل انت متأكد من اقفالك للتذكرة اذا متأكد اكتب $YB`)
 
 
            .then((m) => {
 
 
-               message.channel.awaitMessages(response => response.content === '$confirm', {
+               message.channel.awaitMessages(response => response.content === '$YB', {
 
 
                        max: 1,
