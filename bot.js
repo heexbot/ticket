@@ -107,13 +107,13 @@ client.on("message", (message) => {
 
 
 
-       message.channel.send(`هل انت متأكد من اقفالك للتذكرة اذا متأكد اكتب $YB`)
+       message.channel.send(`هل انت متأكد من اقفالك للتذكرة اذا متأكد اكتب $confirm`)
 
 
            .then((m) => {
 
 
-               message.channel.awaitMessages(response => response.content === '$YB', {
+               message.channel.awaitMessages(response => response.content === '$confirm', {
 
 
                        max: 1,
